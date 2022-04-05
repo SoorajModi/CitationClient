@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getMessage } from '../../api/home';
+import Header from './components/header';
 
 function Home({ message, status, requestMessage }) {
   useEffect(() => {
@@ -10,7 +11,13 @@ function Home({ message, status, requestMessage }) {
 
   return (
     <div className="text-5xl">
-      { status === 'READY' && message }
+      { status === 'READY'
+        && (
+        <div className="py-10">
+          <Header />
+          { console.log(message) }
+        </div>
+        )}
       { status === 'FAILED' && 'Error' }
       { status === 'PENDING' && 'Loading...' }
     </div>
