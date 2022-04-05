@@ -1,11 +1,11 @@
 import React from 'react';
 
-function CMoS() {
+function Chicago() {
   return (
     <div>
-      CMoS
+      Chicago
     </div>
   );
 }
 
-export default CMoS;
+export default Chicago;
