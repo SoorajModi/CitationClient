@@ -4,7 +4,7 @@ import { Footer, Navbar } from './components';
 
 function App() {
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen relative">
       <Navbar />
       <Router />
       <Footer />
