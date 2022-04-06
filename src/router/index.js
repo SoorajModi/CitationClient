@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {
-  About, APA, Chicago, Docs, Help, Home, Login, MLA, NotFound, Pricing, Settings, SignUp,
+  About, APA, Chicago, Docs, Help, Home, Login, MLA, NotFound, Donate, Settings, SignUp,
 } from '../pages';
 
 function Router() {
@@ -14,7 +14,7 @@ function Router() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/donate" element={<Donate />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/help" element={<Help />} />
         <Route path="/mla" element={<MLA />} />

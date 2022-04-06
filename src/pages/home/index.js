@@ -3,6 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getMessage } from '../../api/home';
 import Header from './components/header';
+import Feedback from './components/feedback';
+import Project from './components/project';
+import OpenSource from './components/openSource';
 
 function Home({ message, status, requestMessage }) {
   useEffect(() => {
@@ -15,6 +18,9 @@ function Home({ message, status, requestMessage }) {
         && (
         <div className="py-20 px-6 space-y-10">
           <Header />
+          <Feedback />
+          <Project />
+          <OpenSource />
           { console.log(message) }
         </div>
         )}
