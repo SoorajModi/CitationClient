@@ -22,7 +22,6 @@ function About() {
         Citation App
       </h6>
       <p>
-        {/* eslint-disable-next-line max-len */}
         Use our Citation generator to create and manage citations for all of your projects. An easy to use UI
         that builds your citation with you.
       </p>

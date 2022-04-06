@@ -6,7 +6,9 @@ function App() {
   return (
     <div className="bg-white min-h-screen relative">
       <Navbar />
-      <Router />
+      <div className="pb-80">
+        <Router />
+      </div>
       <Footer />
     </div>
   );

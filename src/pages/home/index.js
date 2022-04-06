@@ -10,10 +10,10 @@ function Home({ message, status, requestMessage }) {
   }, []);
 
   return (
-    <div className="text-5xl">
+    <div>
       { status === 'READY'
         && (
-        <div className="py-10">
+        <div className="py-20 px-6 space-y-10">
           <Header />
           { console.log(message) }
         </div>
