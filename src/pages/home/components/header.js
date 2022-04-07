@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from '../../../components/button';
 
 function Header() {
   const navigate = useNavigate();
@@ -12,28 +13,19 @@ function Header() {
         citations under projects and edit them on a later date. Quickly cover all possible edge cases and improve your
         understanding of creating citations. Build your citation now:
       </span>
-      <div className="flex items-center justify-center space-x-3 w-56">
-        <button
-          type="button"
+      <div className="flex items-center justify-center space-x-3">
+        <Button
+          text="Chicago"
           onClick={() => navigate('/chicago')}
-          className="inline-block px-14 py-2.5 w-40 bg-teal-600 text-white font-medium text-sm leading-tight rounded-full shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-        >
-          Chicago
-        </button>
-        <button
-          type="button"
+        />
+        <Button
+          text="APA"
           onClick={() => navigate('/apa')}
-          className="inline-block px-16 py-2.5 w-40 bg-teal-600 text-white font-medium text-sm leading-tight rounded-full shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-        >
-          APA
-        </button>
-        <button
-          type="button"
-          onClick={() => navigate('/MLA')}
-          className="inline-block px-16 py-2.5 w-40 bg-teal-600 text-white font-medium text-sm leading-tight rounded-full shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
-        >
-          MLA
-        </button>
+        />
+        <Button
+          text="MLA"
+          onClick={() => navigate('/mla')}
+        />
       </div>
     </div>
   );
