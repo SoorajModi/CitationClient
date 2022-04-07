@@ -5,7 +5,7 @@ import { getMessage } from '../../api/home';
 import Header from './components/header';
 import Feedback from './components/feedback';
 import Project from './components/project';
-import OpenSource from './components/openSource';
+import SupportUs from './components/supportUs';
 
 function Home({ message, status, requestMessage }) {
   useEffect(() => {
@@ -20,7 +20,7 @@ function Home({ message, status, requestMessage }) {
           <Header />
           <Feedback />
           <Project />
-          <OpenSource />
+          <SupportUs />
           { console.log(message) }
         </div>
         )}
