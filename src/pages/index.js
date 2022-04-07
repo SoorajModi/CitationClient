@@ -7,7 +7,7 @@ import Home from './home';
 import Login from './login';
 import MLA from './mla';
 import NotFound from './notFound';
-import Pricing from './pricing';
+import Donate from './donate';
 import SignUp from './signup';
 import Settings from './settings';
 
@@ -21,7 +21,7 @@ export {
   Login,
   MLA,
   NotFound,
-  Pricing,
+  Donate,
   Settings,
   SignUp,
 };

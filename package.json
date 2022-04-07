@@ -1,7 +1,9 @@
 {
   "name": "citation-client",
   "version": "0.1.0",
+  "license": "GNU GPLv3",
   "private": true,
+  "author": "Sooraj Modi",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
@@ -22,6 +24,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-ci": "CI=false react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint .",
@@ -54,5 +57,6 @@
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.3.0",
     "tailwindcss": "^3.0.23"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }

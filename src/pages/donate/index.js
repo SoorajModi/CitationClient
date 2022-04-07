@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Pricing() {
+function Donate() {
   return (
     <div>
       Pricing
@@ -8,4 +8,4 @@ function Pricing() {
   );
 }
 
-export default Pricing;
+export default Donate;
