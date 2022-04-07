@@ -592,6 +592,10 @@ Ensure the default browser behavior of the `hidden` attribute.
   width: 40rem;
 }
 
+.w-60 {
+  width: 15rem;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -686,6 +690,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   --tw-space-y-reverse: 0;
   margin-top: calc(8rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(8rem * var(--tw-space-y-reverse));
+}
+
+.space-x-36 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(9rem * var(--tw-space-x-reverse));
+  margin-left: calc(9rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .rounded {

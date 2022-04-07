@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "license": "GNU GPLv3",
   "private": true,
+  "author": "Sooraj Modi",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",
