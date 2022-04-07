@@ -16,7 +16,7 @@ function Home({ message, status, requestMessage }) {
     <div>
       { status === 'READY'
         && (
-        <div className="py-20 px-6 space-y-10">
+        <div className="py-20 px-6 space-y-32">
           <Header />
           <Feedback />
           <Project />

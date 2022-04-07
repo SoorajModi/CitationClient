@@ -682,6 +682,12 @@ Ensure the default browser behavior of the `hidden` attribute.
   margin-bottom: calc(5rem * var(--tw-space-y-reverse));
 }
 
+.space-y-32 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(8rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(8rem * var(--tw-space-y-reverse));
+}
+
 .rounded {
   border-radius: 0.25rem;
 }
@@ -810,6 +816,11 @@ Ensure the default browser behavior of the `hidden` attribute.
 .px-96 {
   padding-left: 24rem;
   padding-right: 24rem;
+}
+
+.px-10 {
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
 
 .pb-56 {
