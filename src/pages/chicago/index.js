@@ -10,8 +10,8 @@ function Chicago() {
     { label: 'Year of Publication', key: 'year_of_publication' },
     { label: 'Edition', key: 'edition' },
     { label: 'URL/DOI', key: 'url_doi' },
-    { label: 'Authors', key: 'authors', person: true },
-    { label: 'Editors', key: 'editors', person: true },
+    { label: 'Authors', key: 'authors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
+    { label: 'Editors', key: 'editors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
   ];
 
   return (
@@ -23,23 +23,21 @@ function Chicago() {
       <div className="flex flex-col space-y-5">
         {
           fields.map((field) => (
-            field.person
+            field.subfield
               ? (
                 <div className="flex flex-col">
                   <span>{field.label}</span>
                   <div className="flex flex-row space-x-5">
-                    <Input
-                      label="First"
-                      value={citation[field.key] && citation[field.key].firstName}
-                      onChange={(e) => setCitation({ ...citation, [field.key]: { ...citation[field.key], firstName: e.target.value } })}
-                      width="w-60"
-                    />
-                    <Input
-                      label="Last"
-                      value={citation[field.key] && citation[field.key].lastName}
-                      onChange={(e) => setCitation({ ...citation, [field.key]: { ...citation[field.key], lastName: e.target.value } })}
-                      width="w-60"
-                    />
+                    {
+                      field.subfield.map((sub) => (
+                        <Input
+                          label={sub.label}
+                          value={citation[field.key] && citation[field.key][sub.key]}
+                          onChange={(e) => setCitation({ ...citation, [field.key]: { ...citation[field.key], [sub.key]: e.target.value } })}
+                          width="w-60"
+                        />
+                      ))
+                    }
                   </div>
                 </div>
               )
