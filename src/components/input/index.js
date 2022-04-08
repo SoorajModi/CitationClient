@@ -12,11 +12,10 @@ function Input({
   minHeight = '',
   resize = false,
   disabled = false,
-  key = null,
   className,
 }) {
   return (
-    <div className={`${className} flex flex-col space-y-1`} key={key}>
+    <div className={`${className} flex flex-col space-y-1`}>
       <span className="flex items-center">{label}</span>
       <div className={`flex items-center rounded-lg py-1.5 ${width}
         border-solid border border-gray-300 focus:border-blue-500 focus:text-gray-600 

@@ -10,6 +10,8 @@ function Chicago() {
     { label: 'Year of Publication', key: 'year_of_publication' },
     { label: 'Edition', key: 'edition' },
     { label: 'URL/DOI', key: 'url_doi' },
+    { label: 'Authors', key: 'authors', person: true },
+    { label: 'Editors', key: 'editors', person: true },
   ];
 
   return (
@@ -21,13 +23,34 @@ function Chicago() {
       <div className="flex flex-col space-y-5">
         {
           fields.map((field) => (
-            <Input
-              label={field.label}
-              value={citation[field.key]}
-              onChange={(e) => setCitation({ ...citation, [field.key]: e.target.value })}
-              width="w-96"
-              key={field.key}
-            />
+            field.person
+              ? (
+                <div className="flex flex-col">
+                  <span>{field.label}</span>
+                  <div className="flex flex-row space-x-5">
+                    <Input
+                      label="First"
+                      value={citation[field.key] && citation[field.key].firstName}
+                      onChange={(e) => setCitation({ ...citation, [field.key]: { ...citation[field.key], firstName: e.target.value } })}
+                      width="w-60"
+                    />
+                    <Input
+                      label="Last"
+                      value={citation[field.key] && citation[field.key].lastName}
+                      onChange={(e) => setCitation({ ...citation, [field.key]: { ...citation[field.key], lastName: e.target.value } })}
+                      width="w-60"
+                    />
+                  </div>
+                </div>
+              )
+              : (
+                <Input
+                  label={field.label}
+                  value={citation[field.key]}
+                  onChange={(e) => setCitation({ ...citation, [field.key]: e.target.value })}
+                  width="w-96"
+                />
+              )
           ))
         }
       </div>
