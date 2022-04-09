@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Input } from '../../components';
+import React, { useEffect, useState } from 'react';
+import { Button, Input } from '../../components';
 
 function Chicago() {
   const [citation, setCitation] = useState({});
@@ -12,7 +12,12 @@ function Chicago() {
     { label: 'URL/DOI', key: 'url_doi' },
     { label: 'Authors', key: 'authors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
     { label: 'Editors', key: 'editors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
+    { label: 'Test', key: 'test', array: true },
   ];
+
+  useEffect(() => {
+    console.log(citation);
+  }, [citation]);
 
   return (
     <div className="py-20 px-6 space-y-10">
@@ -23,6 +28,7 @@ function Chicago() {
       <div className="flex flex-col space-y-5">
         {
           fields.map((field) => (
+            // eslint-disable-next-line no-nested-ternary
             field.subfield
               ? (
                 <div className="flex flex-col">
@@ -41,14 +47,49 @@ function Chicago() {
                   </div>
                 </div>
               )
-              : (
-                <Input
-                  label={field.label}
-                  value={citation[field.key]}
-                  onChange={(e) => setCitation({ ...citation, [field.key]: e.target.value })}
-                  width="w-96"
-                />
-              )
+              : field.array
+                ? (
+                  <div className="flex flex-col">
+                    <div className="flex flex-row items-center space-x-3">
+                      <span>{field.label}</span>
+                      <Button
+                        text="-"
+                        size="small"
+                        onClick={() => {
+                          if (citation[field.key] && citation[field.key].length > 0) {
+                            setCitation({ ...citation, [field.key]: citation[field.key].slice(0, -1) });
+                          }
+                        }}
+                      />
+                      <Button
+                        text="+"
+                        size="small"
+                        onClick={() => {
+                          if (citation[field.key]) {
+                            setCitation({ ...citation, [field.key]: citation[field.key].concat([{}]) });
+                          } else {
+                            setCitation({ ...citation, [field.key]: [{}] });
+                          }
+                        }}
+                      />
+                      <Button
+                        text="Reset"
+                        size="small"
+                        onClick={() => {
+                          setCitation({ ...citation, [field.key]: [] });
+                        }}
+                      />
+                    </div>
+                  </div>
+                )
+                : (
+                  <Input
+                    label={field.label}
+                    value={citation[field.key]}
+                    onChange={(e) => setCitation({ ...citation, [field.key]: e.target.value })}
+                    width="w-96"
+                  />
+                )
           ))
         }
       </div>
