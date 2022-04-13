@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 import React, { useEffect, useState } from 'react';
 import { Button, Input } from '../../components';
 
@@ -12,7 +13,7 @@ function Chicago() {
     { label: 'URL/DOI', key: 'url_doi' },
     { label: 'Authors', key: 'authors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
     { label: 'Editors', key: 'editors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
-    { label: 'Test', key: 'test', array: true },
+    { label: 'Array', key: 'array', array: { subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] } },
   ];
 
   useEffect(() => {
@@ -49,15 +50,17 @@ function Chicago() {
               )
               : field.array
                 ? (
-                  <div className="flex flex-col">
+                  <div className="flex flex-col space-y-5">
                     <div className="flex flex-row items-center space-x-3">
                       <span>{field.label}</span>
                       <Button
                         text="-"
                         size="small"
                         onClick={() => {
-                          if (citation[field.key] && citation[field.key].length > 0) {
-                            setCitation({ ...citation, [field.key]: citation[field.key].slice(0, -1) });
+                          if (citation[field.key] && Object.keys(citation[field.key]).length > 0) {
+                            const state = citation[field.key];
+                            delete state[Object.keys(citation[field.key]).length - 1];
+                            setCitation({ ...citation, [field.key]: state });
                           }
                         }}
                       />
@@ -66,9 +69,9 @@ function Chicago() {
                         size="small"
                         onClick={() => {
                           if (citation[field.key]) {
-                            setCitation({ ...citation, [field.key]: citation[field.key].concat([{}]) });
+                            setCitation({ ...citation, [field.key]: { ...citation[field.key], [Object.keys(citation[field.key]).length]: { firstName: '', lastName: '' } } });
                           } else {
-                            setCitation({ ...citation, [field.key]: [{}] });
+                            setCitation({ ...citation, [field.key]: { 0: { firstName: '', lastName: '' } } });
                           }
                         }}
                       />
@@ -79,6 +82,31 @@ function Chicago() {
                           setCitation({ ...citation, [field.key]: [] });
                         }}
                       />
+                    </div>
+                    <div className="space-y-5">
+                      { citation[field.key] && Object.keys(citation[field.key]).map((_, index) => (
+                        <div key={index} className="flex flex-row space-x-5">
+                          {
+                          field.array.subfield.map((sub) => (
+                            <Input
+                              label={sub.label}
+                              value={citation[field.key][index] && citation[field.key][index][sub.key]}
+                              onChange={(e) => setCitation({
+                                ...citation,
+                                [field.key]: {
+                                  ...citation[field.key],
+                                  [index]: {
+                                    ...citation[field.key][index],
+                                    [sub.key]: e.target.value,
+                                  },
+                                },
+                              })}
+                              width="w-60"
+                            />
+                          ))
+                        }
+                        </div>
+                      ))}
                     </div>
                   </div>
                 )
