@@ -1,4 +1,3 @@
-/* eslint-disable react/no-array-index-key */
 import React, { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -7,7 +6,7 @@ import SingleField from './components/singleField';
 import ArrayField from './components/arrayField';
 import Subfield from './components/subfield';
 
-function Chicago({ citation }) {
+function Chicago({ citation, source }) {
   const fields = [
     { label: 'Title', key: 'title' },
     { label: 'Publisher', key: 'publisher' },
@@ -27,16 +26,16 @@ function Chicago({ citation }) {
     <div className="py-20 px-6 space-y-10">
       <div className="flex flex-col">
         <span className="text-4xl">Chicago Manual of Style (17th edition)</span>
-        <span className="text-2xl">Book</span>
+        <span className="text-2xl">{source}</span>
       </div>
       <div className="flex flex-col space-y-5">
         {
           fields.map((field) => (
             // eslint-disable-next-line no-nested-ternary
-            field.subfield
-              ? <Subfield field={field} />
-              : field.array
-                ? <ArrayField field={field} />
+            field.array
+              ? <ArrayField field={field} />
+              : field.subfield
+                ? <Subfield field={field} />
                 : <SingleField field={field} />
           ))
         }
@@ -47,6 +46,7 @@ function Chicago({ citation }) {
 
 const mapStateToProps = (state) => ({
   citation: state.chicago.citation,
+  source: state.chicago.source,
 });
 
 const mapDispatchToProps = (dispatch) => ({

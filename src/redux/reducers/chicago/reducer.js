@@ -1,7 +1,8 @@
-import { SET_CITATION } from './types';
+import { SET_CITATION, SET_SOURCE } from './types';
 
 const initialState = {
   citation: {},
+  source: 'Book',
 };
 
 export default function reducer(state = initialState, action = {}) {
@@ -10,6 +11,11 @@ export default function reducer(state = initialState, action = {}) {
       return {
         ...state,
         citation: action.payload,
+      };
+    case SET_SOURCE:
+      return {
+        ...state,
+        source: action.payload,
       };
     default:
       return state;
