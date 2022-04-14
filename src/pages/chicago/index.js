@@ -1,9 +1,11 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import { Button, Input } from '../../components';
+import { setCitation } from '../../api/chicago';
 
-function Chicago() {
-  const [citation, setCitation] = useState({});
+function Chicago({ citation, setCitation }) {
   const fields = [
     { label: 'Title', key: 'title' },
     { label: 'Publisher', key: 'publisher' },
@@ -11,14 +13,9 @@ function Chicago() {
     { label: 'Year of Publication', key: 'year_of_publication' },
     { label: 'Edition', key: 'edition' },
     { label: 'URL/DOI', key: 'url_doi' },
-    { label: 'Authors', key: 'authors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
     { label: 'Editors', key: 'editors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
-    { label: 'Array', key: 'array', array: { subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] } },
+    { label: 'Authors', key: 'authors', array: { subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] } },
   ];
-
-  useEffect(() => {
-    console.log(citation);
-  }, [citation]);
 
   return (
     <div className="py-20 px-6 space-y-10">
@@ -125,4 +122,12 @@ function Chicago() {
   );
 }
 
-export default Chicago;
+const mapStateToProps = (state) => ({
+  citation: state.chicago.citation,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setCitation: bindActionCreators(setCitation, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Chicago);
