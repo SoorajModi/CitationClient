@@ -1,26 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { setCitation } from '../../api/chicago';
 import SingleField from './components/singleField';
 import ArrayField from './components/arrayField';
 import Subfield from './components/subfield';
+import Output from './components/output';
 
-function Chicago({ citation, source }) {
+function Chicago({ source }) {
   const fields = [
     { label: 'Title', key: 'title' },
     { label: 'Publisher', key: 'publisher' },
-    { label: 'Place of Publication', key: 'place_of_publication' },
-    { label: 'Year of Publication', key: 'year_of_publication' },
+    { label: 'Place of Publication', key: 'placeOfPublication' },
+    { label: 'Year of Publication', key: 'yearOfPublication' },
     { label: 'Edition', key: 'edition' },
-    { label: 'URL/DOI', key: 'url_doi' },
-    { label: 'Editors', key: 'editors', subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] },
-    { label: 'Authors', key: 'authors', array: { subfield: [{ label: 'First', key: 'firstName' }, { label: 'Last', key: 'lastName' }] } },
+    { label: 'URL/DOI', key: 'url' },
+    { label: 'Authors', key: 'authors', array: { subfield: [{ label: 'First', key: 'first' }, { label: 'Last', key: 'first' }] } },
+    { label: 'Editors', key: 'editors', array: { subfield: [{ label: 'First', key: 'first' }, { label: 'Last', key: 'first' }] } },
   ];
-
-  useEffect(() => {
-    console.log(citation);
-  }, [citation]);
 
   return (
     <div className="py-20 px-6 space-y-10">
@@ -28,6 +25,7 @@ function Chicago({ citation, source }) {
         <span className="text-4xl">Chicago Manual of Style (17th edition)</span>
         <span className="text-2xl">{source}</span>
       </div>
+      <Output />
       <div className="flex flex-col space-y-5">
         {
           fields.map((field) => (
