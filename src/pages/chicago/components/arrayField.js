@@ -25,9 +25,9 @@ function ArrayField({ field, citation, setCitation }) {
           size="small"
           onClick={() => {
             if (citation[field.key]) {
-              setCitation({ ...citation, [field.key]: { ...citation[field.key], [Object.keys(citation[field.key]).length]: { firstName: '', lastName: '' } } });
+              setCitation({ ...citation, [field.key]: { ...citation[field.key], [Object.keys(citation[field.key]).length]: { first: '', last: '' } } });
             } else {
-              setCitation({ ...citation, [field.key]: { 0: { firstName: '', lastName: '' } } });
+              setCitation({ ...citation, [field.key]: { 0: { first: '', last: '' } } });
             }
           }}
         />

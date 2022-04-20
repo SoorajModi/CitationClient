@@ -15,8 +15,8 @@ function Chicago({ source }) {
     { label: 'Year of Publication', key: 'yearOfPublication' },
     { label: 'Edition', key: 'edition' },
     { label: 'URL/DOI', key: 'url' },
-    { label: 'Authors', key: 'authors', array: { subfield: [{ label: 'First', key: 'first' }, { label: 'Last', key: 'first' }] } },
-    { label: 'Editors', key: 'editors', array: { subfield: [{ label: 'First', key: 'first' }, { label: 'Last', key: 'first' }] } },
+    { label: 'Authors', key: 'authors', array: { subfield: [{ label: 'First', key: 'first' }, { label: 'Last', key: 'last' }] } },
+    { label: 'Editors', key: 'editors', array: { subfield: [{ label: 'First', key: 'first' }, { label: 'Last', key: 'last' }] } },
   ];
 
   return (
