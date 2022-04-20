@@ -17,17 +17,20 @@ function Home({ message, status, requestMessage }) {
       title: 'Feedback',
       message: 'Get immediate feedback while building your citation across all edge cases.',
       source: Image,
+      alt: 'demo of live feedback',
     },
     {
       title: 'Project',
       message: 'Save citations to projects and edit them in the future. Never lose a citation again!',
       source: Image,
+      alt: 'demo of project structure',
       reverse: true,
     },
     {
       title: 'Pricing',
       message: 'CitationApp is 100% free to use with no ads.',
       source: Image,
+      alt: 'free and no ads',
     },
   ];
 

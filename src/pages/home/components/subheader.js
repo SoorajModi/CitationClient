@@ -1,7 +1,7 @@
 import React from 'react';
 
 function Subheader({
-  title, message, source, reverse,
+  title, message, source, alt, reverse = false,
 }) {
   return (
     <div className={`flex w-full justify-center items-center space-x-36 ${reverse ? 'flex-row-reverse space-x-reverse' : 'flex-row'}`}>
@@ -10,7 +10,7 @@ function Subheader({
         <span className="text-lg text-gray-400 w-60 leading-loose">{message}</span>
       </div>
       <div className="flex">
-        <img src={source} alt="demo of live feedback" className="w-96" />
+        <img src={source} alt={alt} className="w-96" />
       </div>
     </div>
   );
