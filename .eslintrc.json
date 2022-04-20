@@ -39,6 +39,7 @@
         "react/jsx-filename-extension": "off",
         "react/prop-types": "off",
         "max-len": "off",
-        "no-console": "off"
+        "no-console": "off",
+        "no-shadow": "off"
     }
 }
