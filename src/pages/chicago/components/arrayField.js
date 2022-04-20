@@ -14,9 +14,7 @@ function ArrayField({ field, citation, setCitation }) {
           size="small"
           onClick={() => {
             if (citation[field.key] && Object.keys(citation[field.key]).length > 0) {
-              const state = citation[field.key];
-              delete state[Object.keys(citation[field.key]).length - 1];
-              setCitation({ ...citation, [field.key]: state });
+              setCitation({ ...citation, [field.key]: citation[field.key].splice(0, citation[field.key].length - 1) });
             }
           }}
         />
@@ -25,9 +23,9 @@ function ArrayField({ field, citation, setCitation }) {
           size="small"
           onClick={() => {
             if (citation[field.key]) {
-              setCitation({ ...citation, [field.key]: { ...citation[field.key], [Object.keys(citation[field.key]).length]: { first: '', last: '' } } });
+              setCitation({ ...citation, [field.key]: citation[field.key].concat([{ first: '', last: '' }]) });
             } else {
-              setCitation({ ...citation, [field.key]: { 0: { first: '', last: '' } } });
+              setCitation({ ...citation, [field.key]: [{ first: '', last: '' }] });
             }
           }}
         />
@@ -40,7 +38,7 @@ function ArrayField({ field, citation, setCitation }) {
         />
       </div>
       <div className="space-y-5">
-        { citation[field.key] && Object.keys(citation[field.key]).map((_, index) => (
+        { citation[field.key] && citation[field.key].map((_, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <div key={index} className="flex flex-row space-x-5">
             {
@@ -50,13 +48,14 @@ function ArrayField({ field, citation, setCitation }) {
                   value={citation[field.key][index] && citation[field.key][index][sub.key]}
                   onChange={(e) => setCitation({
                     ...citation,
-                    [field.key]: {
-                      ...citation[field.key],
-                      [index]: {
+                    [field.key]: [
+                      ...citation[field.key].slice(0, index),
+                      {
                         ...citation[field.key][index],
                         [sub.key]: e.target.value,
                       },
-                    },
+                      ...citation[field.key].slice(index + 1, citation[field.key].length),
+                    ],
                   })}
                   width="w-60"
                 />
