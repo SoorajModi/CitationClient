@@ -3,14 +3,36 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { getMessage } from '../../api/home';
 import Header from './components/header';
-import Feedback from './components/feedback';
-import Project from './components/project';
 import SupportUs from './components/supportUs';
+import Image from '../../assets/CiteBot.png';
+import Subheader from './components/subheader';
 
 function Home({ message, status, requestMessage }) {
   useEffect(() => {
     requestMessage();
   }, []);
+
+  const subheaders = [
+    {
+      title: 'Feedback',
+      message: 'Get immediate feedback while building your citation across all edge cases.',
+      source: Image,
+      alt: 'demo of live feedback',
+    },
+    {
+      title: 'Project',
+      message: 'Save citations to projects and edit them in the future. Never lose a citation again!',
+      source: Image,
+      alt: 'demo of project structure',
+      reverse: true,
+    },
+    {
+      title: 'Pricing',
+      message: 'CitationApp is 100% free to use with no ads.',
+      source: Image,
+      alt: 'free and no ads',
+    },
+  ];
 
   return (
     <div>
@@ -18,8 +40,7 @@ function Home({ message, status, requestMessage }) {
         && (
         <div className="py-20 px-6 space-y-32">
           <Header />
-          <Feedback />
-          <Project />
+          {subheaders.map((sub) => <Subheader {...sub} />)}
           <SupportUs />
           { console.log(message) }
         </div>
